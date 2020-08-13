@@ -48,13 +48,31 @@ spec:
           limits:
             memory: "256Mi"
             cpu: "500m"
-        volumeMounts:
-        - name: config-volume
-          mountPath: /configs/
-      volumes:
-      - name: config-volume
-        configMap:
-          name: example-config # name of our config object
+        env:
+          - name: NODE_ENV
+            value: "dev"
+          - name: PORT
+            value: "5000"
+          - name: API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: <secret_name> # name you used in creating a secret e.g my-secret
+                key: <secret_key> # e.g. MY_API_KEY
+        #Use this method or pass in the env variable directly into the pod
+        #NOTE: comment out `volumeMounts` section for configmap and\or secret guide
+        # volumeMounts:
+        # - name: secret-volume
+        #   mountPath: /secrets/
+        # - name: config-volume
+        #   mountPath: /configs/
+      #NOTE: comment out `volumes` section for configmap and\or secret guide
+      # volumes:
+      # - name: secret-volume
+      #   secret:
+      #     secretName: mysecret
+      # - name: config-volume
+      #   configMap:
+      #     name: example-config # name of our config object
 
 ```
 
