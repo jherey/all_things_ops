@@ -1,3 +1,5 @@
+#### [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
+
 Kubernetes deployments are all about `desired state`, declaring to the cluster how you want your containers to operate or function.
 
 Here, you can define the version you want running, number of instances, spin up a new instance if one dies, autoscale as traffic goes up/down, etc (i.e. desired state). Kubernetes constantly looks at the `actual state` and ensures that it matches the `desired state`.

@@ -1,3 +1,5 @@
+#### [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/)
+
 A ConfigMap basically helps to store non-confidential data in key-value pairs.
 
 ```yaml
