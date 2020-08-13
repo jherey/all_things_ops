@@ -9,7 +9,7 @@ An example deployment file looks like this:
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
-metadata: // basic meta data about the deployment
+metadata: # basic meta data about the deployment
   name: example-deploy
   labels:
     app: example-app
@@ -18,9 +18,9 @@ spec:
   selector:
     matchLabels:
       app: example-app
-  replicas: 2 // we want two replicas running
+  replicas: 2 # we want two replicas running
   strategy:
-    type: RollingUpdate // when there are upgrades, k8s will gracefully roll it out
+    type: RollingUpdate # when there are upgrades, k8s will gracefully roll it out
     rollingUpdate:
       maxSurge: 1
       maxUnavailable: 0
@@ -31,23 +31,30 @@ spec:
     spec:
       containers:
       - name: example-app
-        image: jherey/nodejs:v1 // use this docker image
+        image: jherey/nodejs:v1 # use this docker image
         imagePullPolicy: Always
         ports:
-        - containerPort: 5000 // port to be exposed
-        livenessProbe: // constantly check/monitor/probe if the server is up
+        - containerPort: 5000 # port to be exposed
+        livenessProbe: # constantly check/monitor/probe if the server is up
           httpGet:
             path: /status
             port: 5000
           initialDelaySeconds: 3
           periodSeconds: 3
-        resources: // define resource limits for this deployment so it doesn't use too much/all resources
+        resources: # define resource limits for this deployment so it doesn't use too much/all resources
           requests:
             memory: "64Mi"
             cpu: "10m"
           limits:
             memory: "256Mi"
             cpu: "500m"
+        volumeMounts:
+        - name: config-volume
+          mountPath: /configs/
+      volumes:
+      - name: config-volume
+        configMap:
+          name: example-config # name of our config object
 
 ```
 
