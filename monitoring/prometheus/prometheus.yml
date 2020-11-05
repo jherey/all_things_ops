@@ -1,0 +1,11 @@
+scrape_configs:
+  - job_name: server
+    scrape_interval: 5s
+    static_configs:
+    - targets:
+      - server:5000
+  - job_name: server-1
+    scrape_interval: 5s
+    static_configs:
+    - targets:
+      - server-1:4000
