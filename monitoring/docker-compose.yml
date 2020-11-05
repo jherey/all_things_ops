@@ -1,0 +1,23 @@
+version: '3.2'
+
+services:
+  server:
+    image: node:erbium-alpine
+    working_dir: /server
+    command: npm start
+    ports:
+      - 5000:5000
+    volumes:
+      - type: bind
+        source: ./server
+        target: /server
+  server-1:
+    image: node:erbium-alpine
+    working_dir: /server
+    command: npm start
+    ports:
+      - 5001:5000
+    volumes:
+      - type: bind
+        source: ./server
+        target: /server
