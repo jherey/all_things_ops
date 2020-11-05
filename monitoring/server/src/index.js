@@ -29,6 +29,7 @@ app.get('/delay', async (req, res) => {
 });
 
 app.get('/metrics', async (req, res) => {
+  console.log('========metric endpoint called========')
   req.statusCode = 200;
 
   res.setHeader('Content-Type', getContentType());
