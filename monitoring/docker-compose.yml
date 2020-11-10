@@ -2,7 +2,7 @@ version: '3.2'
 
 volumes:
   grafana_data: {}
-  
+
 services:
   prometheus:
     image: prom/prometheus:latest
@@ -15,7 +15,7 @@ services:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
   grafana:
     image: grafana/grafana:6.6.2
-    user: "472"
+    user: "472" #username: admin  password: password
     ports:
       - 3000:3000
     volumes:
