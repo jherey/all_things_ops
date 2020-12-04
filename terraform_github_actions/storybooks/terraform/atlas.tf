@@ -16,7 +16,7 @@ resource "mongodbatlas_cluster" "mongo_cluster" {
   mongo_db_major_version       = "3.6"
 
   //Provider Settings "block"
-  provider_name               = "AWS"
+  provider_name               = "GCP"
   disk_size_gb                = 10
   # provider_disk_iops          = 300
   # provider_volume_type        = "STANDARD"
